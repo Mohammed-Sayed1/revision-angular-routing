@@ -1,16 +1,23 @@
 <div class="container">
-  <div class="col-md-3">
-    <ul class="nav flex-column">
-      <!-- in navbar links we write /path -->
-      <li class="nav-item"><a href="/">Home</a></li>
-      <li class="nav-item"><a href="/users">Users</a></li>
-      <li class="nav-item"><a href="/categories">Categories</a></li>
-    </ul>
-  </div>
-  <div class="col-md-9">
-    <div class="row">
-      <div class="col-md-12">
-        <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="nav flex-column nav-pills">
+        <!--- in navbar links we write /path
+            - we use routerLink when the path is static
+            - we use [routerLink] when the path contains dynamic path, and when the pathhas segments like this -> [routerLink]="['/categories', 'something_1', 'something_2']" and this means -> domain/categories/something_1/something_2
+            - we use routerLinkActive to spicfy what will happen when going to this path, but in the case below home and any other added path will be active because in any other path the link will contain '/' which belong to home and 'users' for example which belongs to users, and this will make home and users have class="active",
+            to solve this we need to add [routerLinkActiveOptions]="{ exact: true}" which means add class='active' to the link when it exactly matches 'domain/' 
+          -->
+        <li class="nav-item"><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/categories']" routerLinkActive="active">Categories</a></li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <router-outlet></router-outlet>
+        </div>
       </div>
     </div>
   </div>
