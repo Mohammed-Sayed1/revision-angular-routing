@@ -1,11 +1,50 @@
 <p>users works!</p>
 
-
+<hr>
 <div>
     <button (click)="onCategoriesClick()">Go to categories</button>
 </div>
-
+<hr>
 <div>
     <div>User with Id is => {{user.id}}</div>
     <div>User with name is => {{user.name}}</div>
+</div>
+<hr>
+<div>
+    <a [routerLink]="['/users', 3, 'Mohammed']">Get the Mohammed's data</a>
+</div>
+<hr>
+<!-- 
+    - we use this directive [queryParams]="{page: 4, search: 'sayed'}" => to append query params ('?page=4&search=sayed') to the route(link)
+    - and we use this directive [fragment]="'load'" => to append fragment ('#load') to the route(link)
+    -> so the result of clicking on the below link will affect the route(link) to look like this => domain/users/5/Sayed?page=4&search=sayed#load
+ -->
+<div>
+    <a [routerLink]="['/users', 5, 'Sayed']" [queryParams]="{page: 4, search: 'sayed'}" [fragment]="'load'">Get the Sayed's data</a>
+</div>
+<hr>
+<div>
+    <button (click)="getHanyDetails()">Get hany's details</button>
+</div>
+<hr>
+<div>
+    <a [routerLink]="['/users', 8, 'Salama']" [queryParams]="{page: 3, search: 'salama'}" fragment="sssss">Get Salama's details, and print it in console</a>
+</div>
+
+<hr>
+<div class="row">
+    <ul class="nav flex-column col-md-3">
+        <li class="nav-item">
+            <a [routerLink]="['/users', 1, 'maha']" [queryParams]="{page: 9, search: 'maha'}" class="nav-link">Get maha's details</a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="['/users', 2, 'mariem']" [queryParams]="{page: 10, search: 'mariem'}" class="nav-link">Get mariem's details</a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="['/users', 3, 'maher']" [queryParams]="{page: 11, search: 'maher'}" class="nav-link">Get maher's details</a>
+        </li>
+    </ul>
+    <div class="col-md-9">
+        <router-outlet></router-outlet>
+    </div>
 </div>

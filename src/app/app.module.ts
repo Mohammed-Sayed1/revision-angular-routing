@@ -6,29 +6,34 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { RouterModule, Routes } from '@angular/router';
-
-/* in Routes we write the path after domain/  */
-const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'users', component: UsersComponent},
-  {path: 'users/:id/:name', component: UsersComponent},
-  {path: 'categories', component: CategoriesComponent},
-]
+import { SubUsersComponent } from './sub-users/sub-users.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/guards/auth-guard.service';
+import { DeactivateGuardService } from './services/guards/deactivate-guard.service';
+import { FormsModule } from '@angular/forms';
+import { UserResolveService } from './services/resolvers/user-resolve.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     UsersComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    SubUsersComponent,
+    EditUserComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
-    // AppRoutingModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  /* we put in providers array any class we want it to act as a service */
+  providers: [AuthService, AuthGuardService, DeactivateGuardService, UserResolveService, UserService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
+
