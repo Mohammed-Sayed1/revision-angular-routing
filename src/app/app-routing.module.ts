@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthGuardService } from './services/guards/auth-guard.service';
 import { DeactivateGuardService } from './services/guards/deactivate-guard.service';
 import { UserResolveService } from './services/resolvers/user-resolve.service';
+import { PostsComponent } from './posts/posts.component';
 
 /* in Routes we write the path after domain/  */
 const appRoutes: Routes = [
@@ -31,7 +32,7 @@ const appRoutes: Routes = [
         canDeactivate: [DeactivateGuardService],
         /* After getting the date from backend in UserResolveService, then we set UserResolveService as a value of an object property and the name of the property is up to you.
         then angular will set what is returned from UserResolveService wrapped in an object like below in route.params.data */
-        resolve: {user: UserResolveService}
+        resolve: { user: UserResolveService },
       },
     ],
   },
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
   },
   { path: 'not-found', component: PageNotFoundComponent },
   /* the will redirect to PageNotFoundComponent in case the user write a route(link) which doesn't match any of above routes(links), and it must be at the end of appRoutes array */
+  { path: 'posts', component: PostsComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
