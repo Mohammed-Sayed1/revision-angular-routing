@@ -10,6 +10,7 @@ to manepolate the link itself:
 */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-users',
@@ -20,7 +21,7 @@ export class UsersComponent implements OnInit {
   /* note: we use '!' to tell typescript trust me I'll intialize the user property */
   user!: { id: string; name: string };
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute, private _userService: UserService) {}
 
   ngOnInit(): void {
     this.user = {
@@ -66,6 +67,10 @@ export class UsersComponent implements OnInit {
       queryParams: { page: 7, search: 'hany' },
       fragment: 'searching',
     });
+  }
+
+  onUserAddClick() {
+    this._userService.addUser()
   }
   
 }
